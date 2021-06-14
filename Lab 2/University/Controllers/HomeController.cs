@@ -19,10 +19,13 @@ namespace University.Controllers
         [HttpPost]
         public ActionResult Index(Admin a)
         {
-            if (a.Username=="admin" && a.Password == "admin")
+            Database db = new Database();
+            string dbPassword = db.Admins.Validate(a.Username);
+            if (dbPassword == a.Password)
             {
                 return RedirectToAction("StudentView");
             }
+
             TempData["ErrorMessage"] = "Incorrect Username/Password";
             return View();
         }

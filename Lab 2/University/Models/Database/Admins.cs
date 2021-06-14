@@ -35,6 +35,24 @@ namespace University.Models.Database
             conn.Close();
             return a;
         }
+
+        public string Validate(string Username)
+        {
+            string query = $"SELECT * FROM Admins WHERE Username = '{Username}'";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            Admin a = null;
+            while (reader.Read())
+            {
+                a = new Admin()
+                {
+                    Password = reader.GetString(reader.GetOrdinal("Password")),
+                };
+            }
+            return a.Password;
+        }
+
         public List<Admin> GetAll()
         {
             List<Admin> admins = new List<Admin>();
@@ -48,6 +66,7 @@ namespace University.Models.Database
                 {
                     Id = reader.GetInt32(reader.GetOrdinal("Id")),
                     Name = reader.GetString(reader.GetOrdinal("Name")),
+                    Username = reader.GetString(reader.GetOrdinal("Username")),
                     Password = reader.GetString(reader.GetOrdinal("Password")),
                 };
                 admins.Add(a);
