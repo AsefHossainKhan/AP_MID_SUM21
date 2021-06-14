@@ -21,7 +21,7 @@ namespace University.Controllers
         {
             Database db = new Database();
             string dbPassword = db.Admins.Validate(a.Username);
-            if (dbPassword == a.Password)
+            if (dbPassword == a.Password && dbPassword != null)
             {
                 return RedirectToAction("StudentView");
             }

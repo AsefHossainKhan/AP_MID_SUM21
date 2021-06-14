@@ -50,7 +50,14 @@ namespace University.Models.Database
                     Password = reader.GetString(reader.GetOrdinal("Password")),
                 };
             }
-            return a.Password;
+            if (a != null)
+            {
+                return a.Password;
+            }
+            else
+            {
+                return null;
+            }
         }
 
         public List<Admin> GetAll()
