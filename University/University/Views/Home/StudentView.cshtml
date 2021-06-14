@@ -1,0 +1,36 @@
+﻿
+@{
+    ViewBag.Title = "StudentView";
+}
+
+<h2>StudentView</h2>
+@model List<University.Models.Student>
+<div class="container">
+    <table class="table table-condensed">
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>DOB</th>
+            <th>Credit</th>
+            <th>CGPA</th>
+            <th>Department Id</th>
+            <th></th>
+            <th></th>
+        </tr>
+        @foreach (var student in @Model)
+        {
+            <tr>
+                <td>@student.Id</td>
+                <td>@student.Name</td>
+                <td>@student.DOB.ToString("dd/MM/yy")</td>
+                <td>@student.Credit</td>
+                <td>@student.CGPA</td>
+                <td>@student.Dept_id</td>
+                <td><a class="btn btn-success" href="/Home/StudentEdit/@student.Id">Edit</a></td>
+                <td><a class="btn btn-danger" href="/Home/StudentDelete/@student.Id">Delete</a></td>
+            </tr>
+        }
+
+    </table>
+</div>
+

@@ -1,0 +1,13 @@
+﻿@{ Layout = "~/Views/Shared/_StartingPage.cshtml";
+    ViewBag.Title = "LOGIN PAGE";
+}
+
+
+<h2>LOGIN</h2>
+<h2>for login, use admin admin as username and password respectively</h2>
+<form action="/Home/Index" method="post">
+    <input class="form-control" type="text" name="Username" value="" />
+    <input class="form-control" type="password" name="Password" value="" />
+    <input class="form-control" type="submit" name="loginButton" value="Login" />
+</form>
+<span>@TempData["ErrorMessage"]</span>
