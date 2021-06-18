@@ -19,5 +19,6 @@ namespace University.Models
         public double CGPA { get; set; }
         [Required]
         public int Dept_id { get; set; }
+        public string Dept_name { get; set; }
     }
 }

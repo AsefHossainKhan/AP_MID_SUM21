@@ -22,6 +22,7 @@ namespace University.Models.Database
             cmd.ExecuteNonQuery();
             conn.Close();
         }
+
         public List<Student> GetAll()
         {
             List<Student> students = new List<Student>();
@@ -45,6 +46,32 @@ namespace University.Models.Database
             conn.Close();
             return students;
         }
+
+        public List<Student> GetAllWithDeptName()
+        {
+            List<Student> students = new List<Student>();
+            string query = "SELECT Students.*, Departments.Name as Dept_name FROM Students, Departments Where Students.Dept_id = Departments.ID";
+            SqlCommand cmd = new SqlCommand(query, conn);
+            conn.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                Student s = new Student()
+                {
+                    Id = reader.GetInt32(reader.GetOrdinal("Id")),
+                    Name = reader.GetString(reader.GetOrdinal("Name")),
+                    DOB = reader.GetDateTime(reader.GetOrdinal("DOB")),
+                    Credit = reader.GetInt32(reader.GetOrdinal("Credit")),
+                    CGPA = reader.GetDouble(reader.GetOrdinal("CGPA")),
+                    Dept_id = reader.GetInt32(reader.GetOrdinal("Dept_id")),
+                    Dept_name = reader.GetString(reader.GetOrdinal("Dept_name")),
+                };
+                students.Add(s);
+            }
+            conn.Close();
+            return students;
+        }
+
         public Student Get(int id)
         {
             Student s = null;

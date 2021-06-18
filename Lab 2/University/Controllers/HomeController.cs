@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -54,8 +55,11 @@ namespace University.Controllers
         public ActionResult StudentCreate()
         {
             Student s = new Student();
-
-            return View(s);
+            Database db = new Database();
+            dynamic comboData = new ExpandoObject();
+            comboData.Student = s;
+            comboData.Department = db.Departments.GetAll();
+            return View(comboData);
         }
         [HttpPost]
         public ActionResult StudentCreate(Student s)
@@ -72,7 +76,7 @@ namespace University.Controllers
         public ActionResult StudentView()
         {
             Database db = new Database();
-            var students = db.Students.GetAll();
+            var students = db.Students.GetAllWithDeptName();
             return View(students);
         }
 

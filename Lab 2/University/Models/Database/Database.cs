@@ -10,6 +10,7 @@ namespace University.Models.Database
     {
         public Students Students { get; set; }
         public Admins Admins { get; set; }
+        public Departments Departments { get; set; }
         public Database()
         {
             string connString = @"Server=DESKTOP-F27PM3S;Database=UMS;Integrated Security=true;";
@@ -17,7 +18,7 @@ namespace University.Models.Database
 
             Students = new Students(conn);
             Admins = new Admins(conn);
-
+            Departments = new Departments(conn);
         }
     }
 }
