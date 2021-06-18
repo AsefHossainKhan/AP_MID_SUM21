@@ -34,5 +34,14 @@ namespace University.Models.Database
             conn.Close();
             return department;
         }
+
+        public void Insert(Department s)
+        {
+            string query = String.Format($"Insert into Departments values ('{s.Name}')");
+            SqlCommand cmd = new SqlCommand(query, conn);
+            conn.Open();
+            cmd.ExecuteNonQuery();
+            conn.Close();
+        }
     }
 }

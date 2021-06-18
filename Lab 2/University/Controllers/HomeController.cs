@@ -104,9 +104,6 @@ namespace University.Controllers
             return RedirectToAction("StudentView");
         }
 
-        public ActionResult Department()
-        {
-            return View();
-        }
+
     }
 }

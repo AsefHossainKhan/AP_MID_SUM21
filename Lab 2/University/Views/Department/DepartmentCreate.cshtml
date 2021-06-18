@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "DepartmentCreate";
+}
+
+<h2>DepartmentCreate</h2>
+
+<div>
+    <form action="/Department/DepartmentCreate" method="post">
+        <input type="text" name="Name" class="form-control" placeholder="Enter your name">
+        @*@Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })*@
+        <input type="submit" class="btn btn-block" value="Add" />
+    </form>
+</div>
