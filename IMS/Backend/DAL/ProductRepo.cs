@@ -22,6 +22,7 @@ namespace DAL
         public static void AddProduct(product p)
         {
             p.created_at = DateTime.Now;
+            p.created_by = "asef";
             context.products.Add(p);
             context.SaveChanges();
         }

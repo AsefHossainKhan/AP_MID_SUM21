@@ -158,3 +158,6 @@ E:\Porashona\Summer 2021\.NET\Github\AP_MID_SUM21\IMS\Backend\IMS\obj\Debug\IMS.
 E:\Porashona\Summer 2021\.NET\Github\AP_MID_SUM21\IMS\Backend\IMS\obj\Debug\IMS.csproj.CopyComplete
 E:\Porashona\Summer 2021\.NET\Github\AP_MID_SUM21\IMS\Backend\IMS\obj\Debug\IMS.dll
 E:\Porashona\Summer 2021\.NET\Github\AP_MID_SUM21\IMS\Backend\IMS\obj\Debug\IMS.pdb
+E:\Porashona\Summer 2021\.NET\Github\AP_MID_SUM21\IMS\Backend\IMS\bin\System.Web.Cors.dll
+E:\Porashona\Summer 2021\.NET\Github\AP_MID_SUM21\IMS\Backend\IMS\bin\System.Web.Http.Cors.dll
+E:\Porashona\Summer 2021\.NET\Github\AP_MID_SUM21\IMS\Backend\IMS\bin\System.Web.Http.Cors.xml

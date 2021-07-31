@@ -5,66 +5,99 @@
         <h4 class="page-title">Add Product</h4>
       </div>
       <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-        
         <ol class="breadcrumb">
           <li><a href="#">Dashboard</a></li>
           <li class="active">Add Product</li>
         </ol>
       </div>
     </div>
-  <div class="col-md-8 col-xs-12">
-    <div class="white-box">
-      <form action="" method="post" enctype="multipart/form-data" class="form-horizontal form-material">
-        <div class="form-group">
-          <label class="col-md-12">Name</label>
-          <div class="col-md-12">
-            <input type="text" placeholder="Shari" name="name"
-              class="form-control form-control-line" required> </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-12">Category</label>
-          <div class="col-sm-12">
-            <select name="category_id" class="form-control form-control-line" required>
-              
-            </select>
+    <div class="col-md-8 col-xs-12">
+      <div class="white-box">
+        <form class="form-horizontal form-material">
+          <div class="form-group">
+            <label class="col-md-12">Name</label>
+            <div class="col-md-12">
+              <input
+                type="text"
+                ng-model="product.name"
+                placeholder="Shari"
+                name="name"
+                class="form-control form-control-line"
+                required
+              />
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="example-email" class="col-md-12">Price</label>
-          <div class="col-md-12">
-            <input type="text" placeholder="100"
-              class="form-control form-control-line" name="price"
-              id="example-email" required> </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-12">Quantity</label>
-          <div class="col-md-12">
-            <input type="number" name="qty" class="form-control form-control-line" required>
+          <div class="form-group">
+            <label class="col-sm-12">Category</label>
+            <div class="col-sm-12">
+              <select
+                ng-model="product.category_id"
+                name="category_id"
+                class="form-control form-control-line"
+                required
+              >
+                <option
+                  ng-repeat="category in categories"
+                  value="{{category.id}}"
+                >
+                  {{category.name}}
+                </option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-12">Description</label>
-          <div class="col-md-12">
-            <textarea rows="5" name="desc" class="form-control form-control-line" required></textarea>
+          <div class="form-group">
+            <label for="example-email" class="col-md-12">Price</label>
+            <div class="col-md-12">
+              <input
+                type="text"
+                ng-model="product.price"
+                placeholder="100"
+                class="form-control form-control-line"
+                name="price"
+                id="example-email"
+                required
+              />
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label class="col-md-12">Image</label>
-          <div class="col-md-12">
-            <input type="file" name="image" class="form-control form-control-line" required>
+          <div class="form-group">
+            <label class="col-md-12">Quantity</label>
+            <div class="col-md-12">
+              <input
+                type="number"
+                ng-model="product.qty"
+                name="qty"
+                class="form-control form-control-line"
+                required
+              />
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-12">
-            <input type="submit" name="add_product" class="btn btn-success" value="Add">
+          <div class="form-group">
+            <label class="col-md-12">Description</label>
+            <div class="col-md-12">
+              <textarea
+                rows="5"
+                ng-model="product.description"
+                name="desc"
+                class="form-control form-control-line"
+                required
+              ></textarea>
+            </div>
           </div>
-        </div>
-        
-      </form>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <input
+                type="submit"
+                ng-click="addproduct(product)"
+                name="add_product"
+                class="btn btn-success"
+                value="Add"
+              />
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   </div>
-              
-          </div>
-          <!-- /.container-fluid -->
-          <footer class="footer text-center"> 2021 &copy; InraBd </footer>
-      </div>
+  <!-- /.container-fluid -->
+  <footer class="footer text-center">2021 &copy; InraBd</footer>
+</div>

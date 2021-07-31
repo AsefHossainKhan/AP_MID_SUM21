@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace IMS
 {
@@ -21,6 +22,8 @@ namespace IMS
                 defaults: new { id = RouteParameter.Optional }
             );
             AutoMapper.Mapper.Initialize(con => con.AddProfile<AutoMapperSettings>());
+            EnableCorsAttribute cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(cors);
         }
     }
 }
