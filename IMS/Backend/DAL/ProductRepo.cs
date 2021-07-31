@@ -6,23 +6,23 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-    public class CategoryRepo
+    public class ProductRepo
     {
         static IMSEntities context;
-
-        static CategoryRepo()
+        static ProductRepo()
         {
             context = new IMSEntities();
         }
 
-        public static List<category> GetAllCategories()
+        public static List<product> GetAllProducts()
         {
-            return context.categories.ToList();
+            return context.products.ToList();
         }
 
-        public static void AddCategory(category c)
+        public static void AddProduct(product p)
         {
-            context.categories.Add(c);
+            p.created_at = DateTime.Now;
+            context.products.Add(p);
             context.SaveChanges();
         }
     }

@@ -75,6 +75,7 @@
     <Compile Include="product.cs">
       <DependentUpon>IMS.tt</DependentUpon>
     </Compile>
+    <Compile Include="ProductRepo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -4,3 +4,9 @@ E:\Porashona\Summer 2021\.NET\Final\Final Assignment\IMS\IMS\BEL\obj\Debug\BEL.c
 E:\Porashona\Summer 2021\.NET\Final\Final Assignment\IMS\IMS\BEL\obj\Debug\BEL.csproj.CoreCompileInputs.cache
 E:\Porashona\Summer 2021\.NET\Final\Final Assignment\IMS\IMS\BEL\obj\Debug\BEL.dll
 E:\Porashona\Summer 2021\.NET\Final\Final Assignment\IMS\IMS\BEL\obj\Debug\BEL.pdb
+E:\Porashona\Summer 2021\.NET\Github\AP_MID_SUM21\IMS\Backend\BEL\bin\Debug\BEL.dll
+E:\Porashona\Summer 2021\.NET\Github\AP_MID_SUM21\IMS\Backend\BEL\bin\Debug\BEL.pdb
+E:\Porashona\Summer 2021\.NET\Github\AP_MID_SUM21\IMS\Backend\BEL\obj\Debug\BEL.csproj.AssemblyReference.cache
+E:\Porashona\Summer 2021\.NET\Github\AP_MID_SUM21\IMS\Backend\BEL\obj\Debug\BEL.csproj.CoreCompileInputs.cache
+E:\Porashona\Summer 2021\.NET\Github\AP_MID_SUM21\IMS\Backend\BEL\obj\Debug\BEL.dll
+E:\Porashona\Summer 2021\.NET\Github\AP_MID_SUM21\IMS\Backend\BEL\obj\Debug\BEL.pdb

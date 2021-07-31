@@ -17,5 +17,12 @@ namespace IMS.Controllers
         {
             return CategoryService.GetAllCategories();
         }
+
+        [Route("api/Category/Add")]
+        [HttpPost]
+        public void AddCategory(CategoryModel c)
+        {
+            CategoryService.AddCategory(c);
+        }
     }
 }

@@ -28,5 +28,11 @@ namespace BLL
 
             return data;
         }
+
+        public static void AddCategory(CategoryModel category)
+        {
+            var data = AutoMapper.Mapper.Map<CategoryModel, category>(category);
+            CategoryRepo.AddCategory(data);
+        }
     }
 }
