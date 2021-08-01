@@ -34,5 +34,11 @@ namespace BLL
             var productOrders = OrderRepo.GetOrder(id);
             return AutoMapper.Mapper.Map<List<productorder>, List<ProductOrderModel>>(productOrders);
         }
+
+        public static OrderModel GetOrderInfo(int id)
+        {
+            var order = OrderRepo.GetOrderInfo(id);
+            return AutoMapper.Mapper.Map<order, OrderModel>(order);
+        }
     }
 }

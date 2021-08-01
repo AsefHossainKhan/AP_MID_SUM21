@@ -37,5 +37,10 @@ namespace DAL
         {
             return context.productorders.Where(e => e.order_id == id).ToList();
         }
+
+        public static order GetOrderInfo(int id)
+        {
+            return context.orders.FirstOrDefault(e => e.id == id);
+        }
     }
 }

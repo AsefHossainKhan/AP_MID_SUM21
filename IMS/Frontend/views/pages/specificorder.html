@@ -13,9 +13,7 @@
       <!-- /.col-lg-12 -->
     </div>
     <!-- /row -->
-    <div class="center pull-left">
-      <br /><br /><br />
-    </div>
+    <div class="center pull-left"><br /><br /><br /></div>
     <div class="center pull-right app-search hidden-sm hidden-xs m-r-10">
       <input type="text" placeholder="Search..." class="form-control" />
       <a href="">
@@ -24,6 +22,10 @@
     </div>
     <div class="row">
       <div class="col-sm-12">
+        <div>
+          Order ID: {{order.id}} Date: {{order.created_at}} Amount:
+          {{order.amount}} Status:{{order.status}}
+        </div>
         <div class="white-box">
           <div class="table-responsive">
             <table class="table">
@@ -42,14 +44,17 @@
                   <td>{{productOrder.product_name}}</td>
                   <td>{{productOrder.product_quantity}}</td>
                   <td>{{productOrder.product_price}}</td>
-                  <td>{{productOrder.product_quantity * productOrder.product_price}}</td>
+                  <td>
+                    {{productOrder.product_quantity *
+                    productOrder.product_price}}
+                  </td>
                 </tr>
                 <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>Total : </td>
-                <td>{{total}}</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td>Total :</td>
+                  <td>{{total}}</td>
                 </tr>
               </tbody>
             </table>
