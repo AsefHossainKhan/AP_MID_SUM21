@@ -1,4 +1,4 @@
-app.controller("placeorder", function ($scope, $http, ajax) {
+app.controller("placeorder", function ($scope, $http, ajax, $location) {
   ajax.get("https://localhost:44367/api/product/allproducts", success, error);
   function success(response) {
     $scope.products = response.data;
@@ -7,7 +7,7 @@ app.controller("placeorder", function ($scope, $http, ajax) {
     console.log(error);
   }
   function addSuccess() {
-    console.log("success");
+    $location.path("/orders");
   }
   $scope.cart = []
 
