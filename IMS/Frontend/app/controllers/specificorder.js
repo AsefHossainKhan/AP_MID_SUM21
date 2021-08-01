@@ -1,6 +1,7 @@
 app.controller("specificorder", function ($scope, $http, ajax, $routeParams) {
   var id = $routeParams.id;
-  ajax.get("https://localhost:44367/api/order/info/" + id, success, error);
+  ajax
+    .get("https://localhost:44367/api/order/" + id, success, error);
   function success(response) {
     $scope.productOrders = response.data.productorders;
     $scope.total = 0;
@@ -13,13 +14,14 @@ app.controller("specificorder", function ($scope, $http, ajax, $routeParams) {
     console.log(error);
   }
 
-  function secondSuccess(response) {
-    $scope.orderInfo = response.data;
-  }
+  // $http
+  //   .get("https://localhost:44367/api/order/" + id)
+  //   .then(success, error)
+  //   .then(
+  //     $http.get("https://localhost:44367/api/order/info/" + id).then(secondSuccess, error)
+  //   );
 
-  // ajax.get(
-  //   "https://localhost:44367/api/Order/Info/" + id,
-  //   secondSuccess,
-  //   error
-  // );
+  // function secondSuccess(response) {
+  //   $scope.orderInfo = response.data;
+  // }
 });

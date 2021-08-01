@@ -47,14 +47,14 @@ namespace IMS.Controllers
             }
         }
 
-        [Route("api/Order/{id}")]
+        [Route("api/Order/info/{id}")]
         [HttpGet]
         public List<ProductOrderModel> GetOrder(int id)
         {
             return OrderService.GetOrder(id);
         }
 
-        [Route("api/Order/Info/{id}")]
+        [Route("api/Order/{id}")]
         [HttpGet]
         public OrderModel GetOrderInfo(int id)
         {
