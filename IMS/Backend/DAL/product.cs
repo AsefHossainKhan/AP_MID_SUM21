@@ -14,6 +14,12 @@ namespace DAL
     
     public partial class product
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public product()
+        {
+            this.productorders = new HashSet<productorder>();
+        }
+    
         public int id { get; set; }
         public string name { get; set; }
         public int category_id { get; set; }
@@ -28,5 +34,7 @@ namespace DAL
         public string deleted_by { get; set; }
     
         public virtual category category { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<productorder> productorders { get; set; }
     }
 }

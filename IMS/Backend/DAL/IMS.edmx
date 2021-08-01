@@ -4,13 +4,32 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="IMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="IMSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="categories">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="created_at" Type="datetime" Nullable="false" />
+          <Property Name="status" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="amount" Type="float" />
+        </EntityType>
+        <EntityType Name="productorder">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="order_id" Type="int" Nullable="false" />
+          <Property Name="product_price" Type="float" Nullable="false" />
+          <Property Name="product_quantity" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="products">
           <Key>
@@ -29,6 +48,30 @@
           <Property Name="updated_by" Type="varchar" MaxLength="50" />
           <Property Name="deleted_by" Type="varchar" MaxLength="50" />
         </EntityType>
+        <Association Name="FK_productorder_order">
+          <End Role="order" Type="Self.order" Multiplicity="1" />
+          <End Role="productorder" Type="Self.productorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productorder">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productorder_products">
+          <End Role="products" Type="Self.products" Multiplicity="1" />
+          <End Role="productorder" Type="Self.productorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="products">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productorder">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_products_categories">
           <End Role="categories" Type="Self.categories" Multiplicity="1" />
           <End Role="products" Type="Self.products" Multiplicity="*" />
@@ -43,14 +86,23 @@
         </Association>
         <EntityContainer Name="IMSModelStoreContainer">
           <EntitySet Name="categories" EntityType="Self.categories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="order" EntityType="Self.order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="productorder" EntityType="Self.productorder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_productorder_order" Association="Self.FK_productorder_order">
+            <End Role="order" EntitySet="order" />
+            <End Role="productorder" EntitySet="productorder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productorder_products" Association="Self.FK_productorder_products">
+            <End Role="products" EntitySet="products" />
+            <End Role="productorder" EntitySet="productorder" />
+          </AssociationSet>
           <AssociationSet Name="FK_products_categories" Association="Self.FK_products_categories">
             <End Role="categories" EntitySet="categories" />
             <End Role="products" EntitySet="products" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="IMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -79,6 +131,7 @@
           <Property Name="updated_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="deleted_by" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="category" Relationship="Self.FK_products_categories" FromRole="products" ToRole="categories" />
+          <NavigationProperty Name="productorders" Relationship="IMSModel.FK_productorder_products" FromRole="product" ToRole="productorder" />
         </EntityType>
         <Association Name="FK_products_categories">
           <End Role="categories" Type="Self.category" Multiplicity="1" />
@@ -99,7 +152,63 @@
             <End Role="categories" EntitySet="categories" />
             <End Role="products" EntitySet="products" />
           </AssociationSet>
+          <EntitySet Name="orders" EntityType="IMSModel.order" />
+          <EntitySet Name="productorders" EntityType="IMSModel.productorder" />
+          <AssociationSet Name="FK_productorder_order" Association="IMSModel.FK_productorder_order">
+            <End Role="order" EntitySet="orders" />
+            <End Role="productorder" EntitySet="productorders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_productorder_products" Association="IMSModel.FK_productorder_products">
+            <End Role="product" EntitySet="products" />
+            <End Role="productorder" EntitySet="productorders" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="order">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="created_at" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="amount" Type="Double" />
+          <NavigationProperty Name="productorders" Relationship="IMSModel.FK_productorder_order" FromRole="order" ToRole="productorder" />
+        </EntityType>
+        <EntityType Name="productorder">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="order_id" Type="Int32" Nullable="false" />
+          <Property Name="product_price" Type="Double" Nullable="false" />
+          <Property Name="product_quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="order" Relationship="IMSModel.FK_productorder_order" FromRole="productorder" ToRole="order" />
+          <NavigationProperty Name="product" Relationship="IMSModel.FK_productorder_products" FromRole="productorder" ToRole="product" />
+        </EntityType>
+        <Association Name="FK_productorder_order">
+          <End Type="IMSModel.order" Role="order" Multiplicity="1" />
+          <End Type="IMSModel.productorder" Role="productorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="order">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productorder">
+              <PropertyRef Name="order_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_productorder_products">
+          <End Type="IMSModel.product" Role="product" Multiplicity="1" />
+          <End Type="IMSModel.productorder" Role="productorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="productorder">
+              <PropertyRef Name="product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -129,6 +238,27 @@
                 <ScalarProperty Name="created_by" ColumnName="created_by" />
                 <ScalarProperty Name="updated_by" ColumnName="updated_by" />
                 <ScalarProperty Name="deleted_by" ColumnName="deleted_by" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="IMSModel.order">
+              <MappingFragment StoreEntitySet="order">
+                <ScalarProperty Name="amount" ColumnName="amount" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="created_at" ColumnName="created_at" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="productorders">
+            <EntityTypeMapping TypeName="IMSModel.productorder">
+              <MappingFragment StoreEntitySet="productorder">
+                <ScalarProperty Name="product_quantity" ColumnName="product_quantity" />
+                <ScalarProperty Name="product_price" ColumnName="product_price" />
+                <ScalarProperty Name="order_id" ColumnName="order_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

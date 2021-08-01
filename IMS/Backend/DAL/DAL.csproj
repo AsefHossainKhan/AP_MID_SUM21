@@ -72,7 +72,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>IMS.edmx</DependentUpon>
     </Compile>
+    <Compile Include="order.cs">
+      <DependentUpon>IMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderRepo.cs" />
     <Compile Include="product.cs">
+      <DependentUpon>IMS.tt</DependentUpon>
+    </Compile>
+    <Compile Include="productorder.cs">
       <DependentUpon>IMS.tt</DependentUpon>
     </Compile>
     <Compile Include="ProductRepo.cs" />
